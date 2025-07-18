@@ -1,8 +1,10 @@
 import React from 'react'
-
+import Root from "../Components/About/Root"
 const About = () => {
   return (
-    <div>About</div>
+    <>
+    <Root/>
+    </>
   )
 }
 

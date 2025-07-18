@@ -4,16 +4,15 @@ import Testimonial from './Testimonial';
 import WelcomeSection from './WelcomeSection';
 import NewArrivals from './NewArrivals';
 
-const Root = () => {
+const Root1 = () => {
   return (
     <>
+      <WelcomeSection />
+      <NewArrivals />
       <BlogBanner />
       <Testimonial />
-      <WelcomeSection />
-      <NewArrivals/>
-
     </>
   );
 };
 
-export default Root;
+export default Root1;
