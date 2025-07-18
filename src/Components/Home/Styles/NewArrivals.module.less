@@ -1,0 +1,146 @@
+// === New Arrivals Title Section ===
+.new-arrivals {
+  text-align: center;
+  margin: 2.5rem 0;
+  font-family: 'Georgia', serif;
+
+  h2 {
+    display: inline-block;
+    position: relative;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+    color: #333;
+    padding: 0 1.25rem;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 7.5rem;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #333, transparent);
+      transform: translateY(-50%);
+    }
+
+    &::before {
+      left: -8.75rem;
+    }
+
+    &::after {
+      right: -8.75rem;
+    }
+  }
+
+  p {
+    font-size: 0.75rem;
+    color: #666;
+    max-width: 18.75rem;
+    margin: 0 auto;
+    line-height: 1.4;
+  }
+}
+
+// === Card Hover Animation ===
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-0.3rem) scale(1.02);
+    box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .card-title {
+    font-size: 1rem;
+    font-style: italic;
+  }
+
+  .card-text {
+    font-size: 0.85rem;
+  }
+}
+
+// === Quick View Overlay (on hover) ===
+.quick-view-overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  padding: 0.4rem;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #333;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  .card:hover & {
+    opacity: 1;
+  }
+}
+
+// === Modal Responsive & Elegant Styling ===
+:global {
+  .modal-content {
+    border-radius: 0.75rem;
+    box-shadow: 0 0.625rem 1.5rem rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    border: none;
+  }
+
+  .modal-body {
+    font-family: 'Georgia', serif;
+    background-color: #fff;
+    padding: 1.5rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column !important;
+      text-align: center;
+    }
+  }
+
+  .modal-header,
+  .modal-footer {
+    border: none;
+  }
+
+  .modal h5 {
+    font-size: 1.25rem;
+    font-style: italic;
+    color: #2d2e2e;
+    margin-bottom: 0.5rem;
+  }
+
+  .modal p {
+    font-size: 0.875rem;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+
+  .modal .form-select {
+    max-width: 9rem;
+    font-size: 0.875rem;
+    border-radius: 0;
+  }
+
+  .modal button {
+    border-radius: 0;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    padding: 0.4rem 1.25rem;
+  }
+
+  .modal img {
+    max-width: 15.625rem;
+    width: 100%;
+    height: auto;
+    border-radius: 0.25rem;
+  }
+}

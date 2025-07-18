@@ -1,15 +1,14 @@
-@mobile: ~"(max-width: 640px)";
-@tablet: ~"(max-width: 1024px)";
-@desktop: ~"(min-width: 1025px)";
+@mobile: ~'(max-width: 640px)';
+@tablet: ~'(max-width: 1024px)';
+@desktop: ~'(min-width: 1025px)';
 
-// Update this path if needed
-@bannerImage: "../../../img/Green.avif";
+@bannerImage: '../../../img/Green.avif';
 
 .banner {
   width: 100%;
-  height: 50vh;          // Increased from 30vh
-  min-height: 300px;     // Increased from 200px
-  max-height: 600px;     // Increased from 400px
+  height: 50vh;
+  min-height: 300px;
+  max-height: 600px;
   background-image: url(@bannerImage);
   background-size: cover;
   background-position: center;
@@ -31,7 +30,7 @@
 }
 
 .bannerText {
-  color: #fff;
+  color: #ffffff;
   text-align: center;
   font-size: clamp(1.5rem, 6vw, 3rem);
   line-height: 1.3;

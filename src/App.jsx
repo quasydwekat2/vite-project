@@ -5,6 +5,8 @@ import Home from './Pages/Home';
 // import Contact from './pages/Contact';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const router = createBrowserRouter([
   {

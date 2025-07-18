@@ -1,29 +1,46 @@
 import React, { useEffect, useState } from 'react';
-import styles from './Styles/AnimatedButton..module.less';
+import styles from './Styles/AnimatedButton.module.less';
 
-export default function AnimatedButton() {
+export default function AnimatedButton({
+  topLabel = 'Scroll Down ⬇️',
+  bottomLabel = 'Go Up ⬆️',
+  scrollThreshold = 100,
+  className = '',
+  scrollToTopPosition = 0,
+  scrollToBottomPosition,
+}) {
   const [isAtTop, setIsAtTop] = useState(true);
 
   const handleClick = () => {
     if (isAtTop) {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      window.scrollTo({
+        top: scrollToBottomPosition ?? document.body.scrollHeight,
+        behavior: 'smooth',
+      });
     } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({
+        top: scrollToTopPosition,
+        behavior: 'smooth',
+      });
     }
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsAtTop(window.scrollY < 100);
+      setIsAtTop(window.scrollY < scrollThreshold);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [scrollThreshold]);
 
   return (
-    <div className={styles.btnWrapper}>
-      <button className={styles.btn} onClick={handleClick}>
+    <div className={`${styles.btnWrapper} ${className}`}>
+      <button
+        className={styles.btn}
+        onClick={handleClick}
+        aria-label="Animated scroll button"
+      >
         <svg viewBox="0 0 180 60" preserveAspectRatio="none">
           <rect
             x="1"
@@ -35,8 +52,7 @@ export default function AnimatedButton() {
             className={styles.strokeRect}
           />
         </svg>
-
-        <span>{isAtTop ? 'Scroll Down ⬇️' : 'Go Up ⬆️'}</span>
+        <span>{isAtTop ? topLabel : bottomLabel}</span>
       </button>
     </div>
   );

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import styles from './Styles/Footer.module.less';
 
 export default function Footer() {
+
   return (
     <>
       <footer className={styles.footer}>

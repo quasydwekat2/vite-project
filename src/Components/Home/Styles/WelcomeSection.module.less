@@ -1,0 +1,61 @@
+:root {
+  --welcome-bg: url('https://static.wixstatic.com/media/84770f_e2414b51861b44239ca93821cb1f359b~mv2_d_5249_2889_s_4_2.jpg');
+  --welcome-text: #ffffff;
+  --welcome-button-border: #ffffff;
+  --welcome-button-hover-bg: #ffffff;
+  --welcome-button-hover-text: #000000;
+}
+
+[data-theme='dark'] {
+  --welcome-text: #e2e2e2;
+  --welcome-button-border: #e2e2e2;
+  --welcome-button-hover-bg: #e2e2e2;
+  --welcome-button-hover-text: #000000;
+}
+
+.welcomeSection {
+  height: 100vh;
+  padding-top: 15vh;
+  background-image: var(--welcome-bg);
+  background-size: cover;
+  background-position: bottom;
+  color: var(--welcome-text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.shopBtn {
+  border: 1px solid var(--welcome-button-border);
+  background: transparent;
+  color: var(--welcome-text);
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--welcome-button-hover-bg);
+    color: var(--welcome-button-hover-text);
+  }
+}
