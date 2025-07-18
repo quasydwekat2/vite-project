@@ -1,0 +1,265 @@
+:root {
+  --bg-light: #e6e7ea;
+  --bg-dark: #1c1e24;
+  --text-light: #2d2e2e;
+  --text-dark: #e2e2e2;
+  --border-light: #c5c5c5;
+  --border-dark: #444;
+  --accent-light: #1c1e24;
+  --accent-dark: #f4f4f4;
+
+  --text-color: #2d2e2e;
+  --underline-color: #1c1e24;
+}
+
+[data-theme='dark'] {
+  --bg-light: var(--bg-dark);
+  --text-light: var(--text-dark);
+  --border-light: var(--border-dark);
+  --accent-light: var(--accent-dark);
+
+  --text-color: var(--text-dark);
+  --underline-color: #f4f4f4;
+}
+
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.mainContent {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.footer {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  padding: 2rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 300;
+  border-top: 1px solid var(--border-light);
+}
+
+.footerGrid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  padding-bottom: 2rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.sectionTitle {
+  // font-style: italic;
+  font-weight: 500;
+  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
+}
+
+.boldTitle {
+  // font-style: normal;
+  font-weight: 600;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: 0.4rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 6px;
+    padding: 0.25rem 0.5rem;
+
+    // &:hover {
+    //   background-color: var(--accent-light);
+    //   color: white;
+    // }
+  }
+}
+
+.storeLink {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.customerService {
+  font-size: 0.75rem;
+}
+
+.helpTitle {
+  // font-style: italic;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #b7b8ba;
+  width: fit-content;
+}
+
+.socialLinks {
+  margin-bottom: 1rem;
+}
+
+.subscribeForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
+.emailInput {
+  padding: 0.5rem;
+  border: 1px solid gray;
+  max-width: 220px;
+  width: 100%;
+  border-radius: 6px;
+}
+
+.subscribeButton {
+  background-color: var(--accent-dark);
+  color: var(--text-light);
+  font-size: 0.75rem;
+  padding: 0.25rem 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+}
+
+[data-theme='dark'] .subscribeButton {
+  background-color: rgb(0, 0, 0);
+  color: white;
+
+  &:hover {
+    // background-color: #ffffff;
+    color: var(--text-light); // Keep text consistent
+  }
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+
+  span {
+    margin-top: 2px;
+  }
+}
+
+.bottomBar {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+  font-size: 1.5rem;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.wix {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.backToTop,
+.chatButton {
+  position: fixed;
+  background: var(--accent-light);
+  color: white;
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.backToTop {
+  bottom: 50%;
+  right: 20px;
+  transform: translateY(50%);
+  opacity: 0;
+  visibility: hidden;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.chatButton {
+  bottom: 20px;
+  right: 20px;
+}
+
+[data-theme='dark'] .chatButton,
+[data-theme='dark'] .backToTop {
+  background-color: var(--accent-dark);
+  color: var(--text-light);
+
+  &:hover {
+    background-color: #ddd;
+  }
+}
+
+a {
+  font-size: 1.1rem;
+  position: relative;
+  color: var(--text-color);
+  text-decoration: none;
+  padding-bottom: 0.3rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -0.25rem;
+    width: 100%;
+    height: 1px;
+    background-color: var(--underline-color);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+}
