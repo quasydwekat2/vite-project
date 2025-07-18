@@ -1,0 +1,234 @@
+// =========================
+// About Hero Section
+// =========================
+.aboutHero {
+  height: 85vh;
+  background-image: url('../../../img/Green.avif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--line-color);
+
+  .heroOverlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .heroContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    z-index: 2;
+    padding: 0 1rem;
+    text-align: center;
+  }
+
+  .heroTitle {
+    color: #fff;
+    font-size: 2.5rem;
+    font-style: italic;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .heroTitle {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .heroTitle {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.scrollBtn {
+  background: #ffffffcc;
+  color: #1c1e24;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background: #fff;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+// =========================
+// About Section
+// =========================
+.aboutSection {
+  padding: 4rem 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-bottom: 1px solid var(--line-color);
+
+  .titleRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+
+    .line {
+      flex: 1;
+      height: 1px;
+      background-color: var(--line-color);
+      margin: 0 1rem;
+    }
+
+    .sectionTitle {
+      font-style: italic;
+      font-size: 1.8rem;
+      margin: 0;
+      white-space: nowrap;
+      color: inherit;
+    }
+
+    @media (max-width: 576px) {
+      .sectionTitle {
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  .column {
+    p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: inherit;
+      margin-bottom: 1.2rem;
+      position: relative;
+      padding: 0.8rem 1rem;
+      border-left: 3px solid transparent;
+      transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+
+      &:hover {
+        background-color: var(--hover-bg);
+        border-left-color: var(--accent-color);
+        transform: translateX(6px);
+      }
+
+      @media (max-width: 768px) {
+        font-size: 0.95rem;
+        padding: 0.6rem 0.8rem;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.6rem;
+      }
+    }
+  }
+}
+
+// =========================
+// About Tea Section
+// =========================
+.aboutTea {
+  padding: 4rem 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  .teaTitle {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+  }
+
+ .teaImage {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+}
+
+
+  .teaList {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1rem;
+
+    li {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.6;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1); // subtle separator
+
+      .icon {
+        display: inline-block;
+        margin-right: 0.75rem;
+        font-size: 1.2rem;
+        line-height: 1;
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover .icon {
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+// =========================
+// Theme Variables (Preserved)
+// =========================
+body[data-theme='light'] {
+  --line-color: #aaa;
+  --hover-bg: #f3f7e9;
+  --accent-color: #9ecb3d;
+
+  .aboutSection {
+    background-color: #ffffff;
+    color: #1c1e24;
+  }
+
+  .aboutTea {
+    background-color: #f8f8f8;
+    color: #2d2e2e;
+  }
+}
+
+body[data-theme='dark'] {
+  --line-color: #555;
+  --hover-bg: #1f232c;
+  --accent-color: #bbf06e;
+
+  .aboutSection {
+    background-color: #1c1e24;
+    color: #e2e2e2;
+  }
+
+  .aboutTea {
+    background-color: #0f1117;
+    color: #e2e2e2;
+  }
+}

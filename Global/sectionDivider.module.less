@@ -1,0 +1,13 @@
+.sectionDivider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--divider-color), transparent);
+
+  body[data-theme='light'] & {
+    --divider-color: #ccc;
+  }
+
+  body[data-theme='dark'] & {
+    --divider-color: rgba(255, 255, 255, 0.15);
+  }
+}

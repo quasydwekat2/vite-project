@@ -1,13 +1,34 @@
-import React from 'react'
-import AboutHeading from "./AboutContent "
-import AboutContent from "./AboutContent "
+import React from 'react';
+import AboutSection from './AboutSection';
+import AboutTea from './AboutTea';
+import AboutHero from './AboutHero';
+import styles from '../../../Global/sectionDivider.module.less';
+
 const Root = () => {
   return (
     <>
-     <AboutHeading/>
-    <AboutContent/>
-    </>
-  )
-}
+      <AboutHero />
+      <div
+        className={styles.sectionDivider}
+        data-aos="fade-in"
+        data-aos-delay="200"
+      />
 
-export default Root
+      <AboutSection />
+      <div
+        className={styles.sectionDivider}
+        data-aos="fade-in"
+        data-aos-delay="200"
+      />
+
+      <AboutTea />
+      <div
+        className={styles.sectionDivider}
+        data-aos="fade-in"
+        data-aos-delay="200"
+      />
+    </>
+  );
+};
+
+export default Root;
