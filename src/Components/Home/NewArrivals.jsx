@@ -58,8 +58,8 @@ const NewArrivals = () => {
           <section className={styles['new-arrivals']} data-aos="fade-up">
             <h2>New Arrivals</h2>
             <p>
-              I'm a paragraph. Click here to add your own text and edit me.
-              Let your users get to know you.
+              I'm a paragraph. Click here to add your own text and edit me. Let
+              your users get to know you.
             </p>
           </section>
         </div>
@@ -156,7 +156,10 @@ const NewArrivals = () => {
         )}
 
         <NavLink to="/teas" data-aos="fade-up" data-aos-delay="300">
-          <Button variant="dark" className="px-4 py-2 text-uppercase text-sm mt-4">
+          <Button
+            variant="dark"
+            className="px-4 py-2 text-uppercase text-sm mt-4"
+          >
             Shop All
           </Button>
         </NavLink>
