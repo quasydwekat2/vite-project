@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import ReactiveButton from 'reactive-button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleNotch, faThumbsUp, faBomb } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCircleNotch,
+  faThumbsUp,
+  faBomb,
+} from '@fortawesome/free-solid-svg-icons';
 import styles from './Styles/ReactiveActionButton.module.less';
 
 const ReactiveActionButton = () => {
@@ -25,9 +29,21 @@ const ReactiveActionButton = () => {
         onClick={handleClick}
         color="primary"
         idleText="Click Me"
-        loadingText={<><FontAwesomeIcon icon={faCircleNotch} spin /> Loading</>}
-        successText={<><FontAwesomeIcon icon={faThumbsUp} /> Success</>}
-        errorText={<><FontAwesomeIcon icon={faBomb} /> Error</>}
+        loadingText={
+          <>
+            <FontAwesomeIcon icon={faCircleNotch} spin /> Loading
+          </>
+        }
+        successText={
+          <>
+            <FontAwesomeIcon icon={faThumbsUp} /> Success
+          </>
+        }
+        errorText={
+          <>
+            <FontAwesomeIcon icon={faBomb} /> Error
+          </>
+        }
         type="button"
         className={styles.reactiveBtn}
         messageDuration={2000}

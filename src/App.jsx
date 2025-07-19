@@ -6,7 +6,6 @@ import Blog from './Pages/Blog';
 import Contact from './Pages/Contact';
 import NotFound from './Pages/NotFound';
 import { ToastContainer } from 'react-toastify';
-// import Page404 from "./Components/404/Page404"
 
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
