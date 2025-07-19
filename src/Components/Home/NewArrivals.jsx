@@ -10,7 +10,7 @@ import {
   Modal,
   Form,
 } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './Styles/NewArrivals.module.less';
 
@@ -22,6 +22,8 @@ const NewArrivals = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState('125G');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
@@ -51,18 +53,24 @@ const NewArrivals = () => {
     setSelectedSize('125G');
   };
 
+  const handleNavigate = () => {
+    navigate('/teas');
+  };
+
   return (
     <section className="py-5 text-center bg-light">
       <Container fluid>
-        <div className="mb-4">
-          <section className={styles['new-arrivals']} data-aos="fade-up">
-            <h2>New Arrivals</h2>
-            <p>
-              I'm a paragraph. Click here to add your own text and edit me. Let
-              your users get to know you.
-            </p>
-          </section>
-        </div>
+        <section className={styles['new-arrivals']} data-aos="fade-up">
+          <h2 data-aos="fade-up">
+            <span className={styles.line}></span>
+            New Arrivals
+            <span className={styles.line}></span>
+          </h2>
+          <p>
+            I'm a paragraph. Click here to add your own text and edit me. Let
+            your users get to know you.
+          </p>
+        </section>
 
         <Row className="g-4" xs={6} sm={4} md={3} lg={3} xl={3}>
           {products.map((item) => (
@@ -155,14 +163,12 @@ const NewArrivals = () => {
           </Modal>
         )}
 
-        <NavLink to="/teas" data-aos="fade-up" data-aos-delay="300">
-          <Button
-            variant="dark"
-            className="px-4 py-2 text-uppercase text-sm mt-4"
-          >
-            Shop All
-          </Button>
-        </NavLink>
+        <div data-aos="fade-up" data-aos-delay="300">
+          <button className={styles.shopAllBtn} onClick={handleNavigate}>
+            <span>Shop All</span>
+            <span className={styles.arrow}>&rarr;</span>
+          </button>
+        </div>
       </Container>
     </section>
   );
