@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import styles from './styles/About.module.less';
+import Styles from './styles/About.module.less';
 
 export default function AboutHero() {
   useEffect(() => {
@@ -14,14 +14,14 @@ export default function AboutHero() {
   };
 
   return (
-    <section className={styles.aboutHero}>
-      <div className={styles.heroOverlay}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle} data-aos="fade-up">
+    <section className={Styles.aboutHero}>
+      <div className={Styles.heroOverlay}>
+        <div className={Styles.heroContent}>
+          <h1 className={Styles.heroTitle} data-aos="fade-up">
             Our Story
           </h1>
           <button
-            className={styles.scrollBtn}
+            className={Styles.scrollBtn}
             onClick={scrollToAbout}
             data-aos="fade-up"
             data-aos-delay="300"

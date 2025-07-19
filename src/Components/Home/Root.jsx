@@ -3,26 +3,25 @@ import BlogBanner from './BlogBanner';
 import Testimonial from './Testimonial';
 import WelcomeSection from './WelcomeSection';
 import NewArrivals from './NewArrivals';
-import Styles from '../../Global/sectionDivider.module.less';
-
+import styles from "@/Global/sectionDivider.module.less"
 const Root1 = () => {
   return (
     <>
       <WelcomeSection />
       <div
-        className={Styles.sectionDivider}
+        className={styles.sectionDivider}
         data-aos="fade-in"
         data-aos-delay="200"
       />
       <NewArrivals />
       <div
-        className={Styles.sectionDivider}
+        className={styles.sectionDivider}
         data-aos="fade-in"
         data-aos-delay="200"
       />
       <BlogBanner />{' '}
       <div
-        className={Styles.sectionDivider}
+        className={styles.sectionDivider}
         data-aos="fade-in"
         data-aos-delay="200"
       />

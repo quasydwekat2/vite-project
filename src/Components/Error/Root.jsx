@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Container, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import AOS from 'aos';
-import { toast } from 'react-toastify';
 
 import 'aos/dist/aos.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,16 +11,6 @@ export default function NotFound() {
   useEffect(() => {
     AOS.init({ duration: 1200 });
   }, []);
-
-  const openExternalLink = () => {
-    toast.info('Opening original article...', { position: 'top-center' });
-    setTimeout(() => {
-      window.open(
-        'https://www.silocreativo.com/en/creative-examples-404-error-css/',
-        '_blank'
-      );
-    }, 800);
-  };
 
   return (
     <Container className={styles.wrapper} fluid>
@@ -40,9 +29,7 @@ export default function NotFound() {
 
       <div className={styles.linkContainer}>
         <NavLink to="/" className={styles.navBtn}>
-          <Button onClick={openExternalLink} variant="danger">
-            Go to Homepage
-          </Button>
+          Go to Homepage
         </NavLink>
       </div>
     </Container>
