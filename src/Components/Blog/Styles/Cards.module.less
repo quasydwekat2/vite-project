@@ -1,0 +1,237 @@
+// ====================
+// Blog Card Section
+// ====================
+.cardSection {
+  scroll-margin-top: 80px;
+  padding-bottom: 3rem;
+
+  @media (max-width: 768px) {
+    scroll-margin-top: 60px;
+  }
+}
+
+// ====================
+// Card Wrapper
+// ====================
+.card {
+  cursor: pointer;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background-color: #fff;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  &.expanded {
+    transform: scale(1.02);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.25rem;
+  }
+}
+
+// ====================
+// Image
+// ====================
+.cardImage {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+
+  @media (max-width: 992px) {
+    height: 180px;
+  }
+
+  @media (max-width: 768px) {
+    height: 160px;
+  }
+
+  @media (max-width: 576px) {
+    height: 140px;
+  }
+}
+
+.card:hover .cardImage {
+  transform: scale(1.03);
+}
+
+// ====================
+// Title
+// ====================
+.cardTitle {
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  color: #222;
+  transition: color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    color: #007bff;
+    transform: translateX(2px);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.05rem;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 0.95rem;
+  }
+}
+
+// ====================
+// Meta Info
+// ====================
+.cardMeta {
+  font-size: 0.8rem;
+  color: #888;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+
+  .author {
+    font-weight: 500;
+    color: #222;
+  }
+}
+
+// ====================
+// Description
+// ====================
+.cardTextWrapper {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.cardText {
+  font-size: 0.875rem;
+  color: #444;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 0.75rem;
+  }
+}
+
+.fadeOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2.5em;
+  background: linear-gradient(to top, #fff, rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+
+// ====================
+// Read More Button
+// ====================
+.readMoreBtn {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 4px;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 0.75rem;
+  }
+}
+
+// ====================
+// Stats Section
+// ====================
+.cardStats {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #eaeaea;
+  padding-top: 0.75rem;
+  font-size: 0.75rem;
+  color: #999;
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  svg {
+    font-size: 0.85rem;
+    vertical-align: middle;
+    color: #999;
+  }
+}
+
+.heart {
+  color: #dc3545;
+}
+
+// ====================
+// Dark Theme
+// ====================
+[data-theme='dark'] {
+  .card {
+    background-color: #1e1e1e;
+    border-color: #333;
+  }
+
+  .cardTitle,
+  .author,
+  .cardText {
+    color: #f0f0f0;
+  }
+
+  .cardMeta {
+    color: #aaa !important;
+  }
+
+  .cardStats {
+    border-top-color: #444;
+    color: #ccc;
+
+    svg {
+      color: #ccc;
+    }
+  }
+
+  .fadeOverlay {
+    background: linear-gradient(to top, #1e1e1e, rgba(30, 30, 30, 0));
+  }
+
+  .readMoreBtn {
+    color: #4dabf7;
+
+    &:hover {
+      color: #228be6;
+    }
+  }
+}

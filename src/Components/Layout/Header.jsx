@@ -24,7 +24,9 @@ export default function Header() {
           <NavLink to="/contact">Contact</NavLink>
         </nav>
 
-        <div className={styles.logo}>BLOOM'S TEA</div>
+        <div className={styles.logo}>
+         <NavLink to="/">BLOOM'S TEA</NavLink> 
+          </div>
 
         <div className={styles.actions}>
           <button onClick={toggleTheme} className={styles.modeToggle}>

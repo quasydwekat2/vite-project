@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import {
   Container,
   Row,
@@ -21,9 +23,9 @@ const NewArrivals = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState('125G');
 
-  const { newArrivals } = styles;
-
   useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+
     const fetchData = async () => {
       try {
         const { data } = await axios.get(apiUrl);
@@ -33,6 +35,7 @@ const NewArrivals = () => {
         console.error('Error fetching products:', err);
       }
     };
+
     fetchData();
   }, []);
 
@@ -52,12 +55,11 @@ const NewArrivals = () => {
     <section className="py-5 text-center bg-light">
       <Container fluid>
         <div className="mb-4">
-          <section className={newArrivals}>
+          <section className={styles['new-arrivals']} data-aos="fade-up">
             <h2>New Arrivals</h2>
             <p>
-              {
-                "I'm a paragraph. Click here to add your own text and edit me.\nLet your users get to know you."
-              }
+              I'm a paragraph. Click here to add your own text and edit me.
+              Let your users get to know you.
             </p>
           </section>
         </div>
@@ -66,25 +68,21 @@ const NewArrivals = () => {
           {products.map((item) => (
             <Col key={item.id} xs={12} sm={6} md={4} lg={2}>
               <Card
+                data-aos="fade-up"
                 className={`${styles.card} h-100 border-0 shadow-sm`}
                 onClick={() => handleShow(item)}
               >
-                <div
-                  className="position-relative bg-white"
-                  style={{ height: '250px', overflow: 'hidden' }}
-                >
+                <div className={styles.cardImageWrapper}>
                   <Card.Img
                     variant="top"
                     src={item.thumbnail}
                     alt={item.title}
-                    className="w-100 h-100"
-                    style={{ objectFit: 'contain' }}
+                    className={styles.cardImage}
                   />
                   <img
                     src={item.images?.[2] || item.thumbnail}
                     alt={`${item.title} hover`}
-                    className="position-absolute top-0 start-0 w-100 h-100"
-                    style={{ objectFit: 'contain', opacity: 0 }}
+                    className={styles['hover-img']}
                   />
                   <div className={styles['quick-view-overlay']}>Quick View</div>
                 </div>
@@ -105,20 +103,14 @@ const NewArrivals = () => {
           <Modal show={showModal} onHide={handleClose} centered size="lg">
             <Modal.Body className="p-4">
               <div className="row align-items-center">
-                {/* Left: Centered Image */}
                 <div className="col-md-6 text-center d-flex justify-content-center">
                   <img
                     src={selectedProduct.thumbnail}
                     alt={selectedProduct.title}
-                    style={{
-                      maxWidth: '250px',
-                      width: '100%',
-                      height: 'auto',
-                    }}
+                    className={styles.modalImage}
                   />
                 </div>
 
-                {/* Right: Product Info */}
                 <div className="col-md-6 mt-4 mt-md-0">
                   <h5 className="fst-italic">{selectedProduct.title}</h5>
                   <p className="text-muted">{selectedProduct.price}₪</p>
@@ -163,8 +155,8 @@ const NewArrivals = () => {
           </Modal>
         )}
 
-        <NavLink to="/teas" className="d-inline-block mt-4">
-          <Button variant="dark" className="px-4 py-2 text-uppercase text-sm">
+        <NavLink to="/teas" data-aos="fade-up" data-aos-delay="300">
+          <Button variant="dark" className="px-4 py-2 text-uppercase text-sm mt-4">
             Shop All
           </Button>
         </NavLink>

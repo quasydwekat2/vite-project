@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './Components/Layout/Root';
 import Home from './Pages/Home';
 import About from './Pages/About';
-// import Contact from './pages/Contact';
+import Blog from './pages/Blog';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: '/About',
         element: <About />,
+      },
+      {
+        path: '/Blog',
+        element: <Blog />,
       },
     ],
   },

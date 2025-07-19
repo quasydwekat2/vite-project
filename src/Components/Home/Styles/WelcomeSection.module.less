@@ -27,12 +27,26 @@
   text-align: center;
   padding-left: 1rem;
   padding-right: 1rem;
+  position: relative;
+  z-index: 1;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+  }
 }
 
 .title {
   font-size: 2rem;
   font-weight: 300;
   margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
 
   @media (min-width: 768px) {
     font-size: 2.5rem;
@@ -43,6 +57,7 @@
   font-size: 1.125rem;
   font-style: italic;
   margin-bottom: 1.5rem;
+  transition: color 0.3s ease;
 }
 
 .shopBtn {
