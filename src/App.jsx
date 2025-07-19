@@ -2,9 +2,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './Components/Layout/Root';
 import Home from './Pages/Home';
 import About from './Pages/About';
-import Blog from './pages/Blog';
-import Contact from "./Pages/Contact"
+import Blog from './Pages/Blog';
+import Contact from './Pages/Contact';
+import NotFound from './Pages/NotFound';
 import { ToastContainer } from 'react-toastify';
+// import Page404 from "./Components/404/Page404"
+
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -14,26 +17,11 @@ const router = createBrowserRouter([
     path: '/',
     element: <Root />,
     children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: '/About',
-        element: <About />,
-      },
-      {
-        path: '/Blog',
-        element: <Blog />,
-      },
-      {
-        path: '/Contact',
-        element: <Contact />,
-      },
-      {
-        path: '*',
-        element: <div>404</div>,
-      },
+      { index: true, element: <Home /> },
+      { path: 'about', element: <About /> },
+      { path: 'blog', element: <Blog /> },
+      { path: 'contact', element: <Contact /> },
+      { path: '*', element: <NotFound /> },
     ],
   },
 ]);
