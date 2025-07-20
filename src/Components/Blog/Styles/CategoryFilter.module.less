@@ -1,0 +1,41 @@
+// Styles/CategoryFilter.module.less
+.filterBar {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 2rem;
+  animation: fadeInDown 0.6s ease-in-out;
+}
+
+.filterBtn {
+  margin: 0 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-theme='dark'] {
+  .filterBar {
+    border-color: #444;
+  }
+
+  .filterBtn {
+    background-color: transparent;
+    color: #ddd;
+    border-color: #555;
+
+    &:hover {
+      background-color: #444;
+      color: #fff;
+    }
+  }
+}

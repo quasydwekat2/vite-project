@@ -1,50 +1,71 @@
-.heroSection {
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&display=swap');
+
+.hero {
+  height: 85vh;
   position: relative;
-  width: 100%;
-  height: 60vh;
-  min-height: 400px;
   overflow: hidden;
 
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .bgImage {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.65);
-    transition: transform 0.5s ease;
-
-    &:hover {
-      transform: scale(1.02);
-    }
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
   }
 
   .overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
     position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.35);
+    top: 0;
+    left: 0;
+    z-index: 2;
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: white;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    animation: fadeInDown 1s ease;
+    margin: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 45vh;
 
     h1 {
-      color: #fff;
-      font-size: 3rem;
-      font-style: italic;
-      font-weight: 300;
-      margin: 0;
-      text-align: center;
-      letter-spacing: 1px;
-
-      @media (max-width: 768px) {
-        font-size: 2rem;
-      }
-
-      @media (max-width: 480px) {
-        font-size: 1.6rem;
-      }
+      font-size: clamp(1.5rem, 5vw, 2rem);
     }
+  }
+}
+
+[data-theme='dark'] {
+  .hero {
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

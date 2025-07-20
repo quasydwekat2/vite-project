@@ -12,7 +12,7 @@ export default function HeroSection() {
   return (
     <section className={`position-relative ${styles.heroSection}`}>
       <img
-        src='../../../img/person.jpg'
+        src='/blog-hero.avif'
         alt="Hero Background"
         className={`position-absolute top-0 start-0 w-100 h-100 ${styles.heroImage}`}
       />
