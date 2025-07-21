@@ -144,34 +144,74 @@
 // About Tea Section
 // =========================
 .aboutTea {
-  padding: 4rem 0;
+  padding: 5rem 1rem;
+  background-color: var(--bg);
+  color: var(--text);
   transition: background-color 0.3s ease, color 0.3s ease;
 
   .teaTitle {
     text-align: center;
+    font-size: 2.2rem;
+    font-weight: 600;
     font-style: italic;
-    font-size: 1.8rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--accent);
   }
 
- .teaImage {
-  width: 100%;
-  height: auto;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-
-  &:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  .teaImageWrapper {
+    width: 100%;
+    height: 400px;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   }
-}
 
+  .teaImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 1rem;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  .rotatingText {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1.1rem;
+
+    .animatedText {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.2rem;
+      background-color: var(--card-bg);
+      border-left: 4px solid var(--accent);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s ease;
+
+      .icon {
+        font-size: 1.5rem;
+        flex-shrink: 0;
+      }
+    }
+  }
 
   .teaList {
     list-style: none;
     padding-left: 0;
-    margin-top: 1rem;
+    margin-top: 2rem;
 
     li {
       display: flex;
@@ -179,24 +219,54 @@
       font-size: 1rem;
       margin-bottom: 1.2rem;
       line-height: 1.6;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1); // subtle separator
+      padding: 0.75rem 1rem;
+      background-color: var(--card-bg);
+      border-left: 4px solid var(--accent);
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, background-color 0.3s ease;
 
-      .icon {
-        display: inline-block;
-        margin-right: 0.75rem;
-        font-size: 1.2rem;
-        line-height: 1;
-        flex-shrink: 0;
-        transition: transform 0.3s ease;
+      &:hover {
+        transform: translateX(6px);
+        background-color: rgba(255, 255, 255, 0.05);
       }
 
-      &:hover .icon {
-        transform: scale(1.2);
+      .icon {
+        margin-right: 0.75rem;
+        font-size: 1.3rem;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: scale(1.2);
+        }
       }
     }
   }
+
+  @media (max-width: 768px) {
+    .teaTitle {
+      font-size: 1.6rem;
+    }
+
+    .teaImageWrapper {
+      height: 300px;
+    }
+
+    .rotatingText {
+      .animatedText {
+        font-size: 1.05rem;
+        padding: 0.9rem;
+      }
+    }
+
+    .teaList li {
+      font-size: 0.95rem;
+      padding: 0.6rem 0.9rem;
+    }
+  }
 }
+
+
 
 // =========================
 // Theme Variables (Preserved)

@@ -5,9 +5,11 @@ import 'aos/dist/aos.css';
 import styles from './styles/About.module.less';
 
 export default function AboutSection() {
-  useEffect(() => {
-    AOS.refresh();
-  }, []);
+useEffect(() => {
+  AOS.init({ once: false });
+
+  // AOS.refresh(); 
+}, []);
 
   return (
     <section className={styles.aboutSection} id="about-section">

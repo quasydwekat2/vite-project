@@ -47,7 +47,7 @@ export default function Cards() {
   ];
 
   return (
-    <Container fluid id="blog-cards" className={`pt-5 ${styles.cardSection}`}>
+    <Container  fluid id="blog-cards" className={`pt-5 ${styles.cardSection}`}>
       <Row xs={1} sm={2} md={2} lg={3} xl={3}>
         {cardData.map((card, idx) => {
           const isExpanded = expandedCards[idx];

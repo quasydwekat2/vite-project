@@ -1,14 +1,20 @@
 import React from 'react';
 import Cards from './Cards';
-import HeroSection from './HeroSection';
+import HeroSection from '@/Global/HeroSection';
 // import CategoryFilter from './CategoryFilter';
+import Styles from "@/Global/Styles/sectionDivider.module.less";
+import AboutImage from '@/img/AboutHero.jpg';
 
-import Styles from '../../Global/sectionDivider.module.less';
 
 const Root = () => {
   return (
     <>
-      <HeroSection />
+      <HeroSection
+        title="Bloom's Blog"
+        image={AboutImage}
+        mobileImage={AboutImage}
+        scrollTarget="#blog-cards"
+      />
       <div
         className={Styles.sectionDivider}
         data-aos="fade-in"

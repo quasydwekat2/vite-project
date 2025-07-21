@@ -11,6 +11,7 @@
   --underline-color: #dddddd;
   --border-color: rgba(255, 255, 255, 0.2);
   --hover-color: #cccccc;
+  --active-color: #ffcd57;
   --cart-bg: #ffffff;
   --cart-text: #000000;
   --hero-overlay: rgba(0, 0, 0, 0.55);
@@ -22,17 +23,19 @@
   --underline-color: #222222;
   --border-color: rgba(0, 0, 0, 0.1);
   --hover-color: #444444;
+  --active-color: #111111;
   --cart-bg: #000000;
   --cart-text: #ffffff;
   --hero-overlay: rgba(255, 255, 255, 0.1);
 }
 
-// ===================
-// Reusable Hover Underline
-// ===================
-.link-hover-underline {
+.link {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  text-decoration: none;
   position: relative;
   padding-bottom: 0.3rem;
+  transition: color var(--transition), opacity var(--transition);
 
   &::after {
     content: '';
@@ -52,9 +55,25 @@
   }
 }
 
-// ===================
-// Header Styles
-// ===================
+.active {
+  font-weight: 600;
+  color: var(--active-color);
+  animation: fadeIn 0.3s ease-in-out;
+
+  &::after {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .header {
   position: fixed;
   top: 0;
@@ -63,11 +82,11 @@
   z-index: 50;
   background-color: var(--header-bg);
   color: var(--text-color);
-  -webkit-backdrop-filter: blur(6px); 
+  font-family: sans-serif;
+  border-bottom: 1px solid var(--border-color);
+  -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 
-  border-bottom: 1px solid var(--border-color);
-  font-family: sans-serif;
   transition: background-color var(--transition),
     backdrop-filter var(--transition);
 
@@ -81,9 +100,26 @@
     font-weight: 300;
 
     @media (max-width: 768px) {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr auto;
       text-align: center;
-      gap: 1rem;
+    }
+  }
+
+  .burger {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: color var(--transition);
+
+    &:hover {
+      color: var(--hover-color);
+    }
+
+    @media (max-width: 768px) {
+      display: block;
     }
   }
 
@@ -93,32 +129,23 @@
     gap: 1.5rem;
     flex-wrap: wrap;
 
-    a {
-      font-size: 1.1rem;
-      color: var(--text-color);
-      text-decoration: none;
-      .link-hover-underline;
-    }
-  }
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      display: none;
 
-  .logo {
-    text-align: center;
-    font-size: 1.25rem;
-    font-weight: 400;
-    letter-spacing: 0.05rem;
-
-    a {
-      color: var(--text-color);
-      text-decoration: none;
+      &.open {
+        display: flex;
+      }
     }
   }
 
   .actions {
     display: flex;
     justify-content: flex-end;
-    gap: 2rem;
     align-items: center;
-    flex-wrap: wrap;
+    gap: 2rem;
 
     .modeToggle {
       background: transparent;
@@ -134,48 +161,11 @@
         color: var(--hover-color);
       }
     }
-
-    .iconText {
-      font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text-color);
-      text-decoration: none;
-      cursor: pointer;
-      .link-hover-underline;
-    }
-
-    .cartIcon {
-      position: relative;
-
-      .cartCount {
-        position: absolute;
-        top: 0;
-        right: 0;
-        transform: translate(50%, -50%);
-        background: var(--cart-bg);
-        color: var(--cart-text);
-        border-radius: 50%;
-        width: 1rem;
-        height: 1rem;
-        font-size: 0.625rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-      }
-    }
-  }
-
-  .icon {
-    font-size: 1.125rem;
-    transition: color var(--transition);
   }
 
   .bottomRow {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     padding: 0.75rem 5vw;
     border-top: 1px solid var(--border-color);
@@ -202,44 +192,15 @@
   }
 }
 
-// ===================
-// About Hero Section
-// ===================
-.aboutHero {
-  height: 70vh;
-  width: 100%;
-  background-image: url('/our-story-hero.jpg');
-  background-size: cover;
-  background-position: center;
+.cartLink {
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
+  :global(.MuiIconButton-root) {
+    padding: 0.5rem;
+    transition: transform 0.2s;
 
-  .heroOverlay {
-    background-color: var(--hero-overlay);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .heroTitle {
-    color: white;
-    font-size: 3rem;
-    font-style: italic;
-    font-weight: 300;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
-    text-align: center;
-    padding: 0 1rem;
-
-    @media (max-width: 768px) {
-      font-size: 2.2rem;
-    }
-
-    @media (max-width: 480px) {
-      font-size: 1.8rem;
+    &:hover {
+      transform: scale(1.1);
     }
   }
 }
