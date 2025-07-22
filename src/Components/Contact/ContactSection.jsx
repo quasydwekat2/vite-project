@@ -1,46 +1,86 @@
-import React, { useEffect, useState } from 'react';
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  Button,
-  Spinner,
-  Placeholder,
-  NavLink,
-} from 'react-bootstrap';
-import { toast } from 'react-toastify';
+import React, { useState } from 'react';
+import { object, string, number } from 'yup';
+import { toast, Slide } from 'react-toastify';
+import { Container, Row, Col, Form, NavLink } from 'react-bootstrap';
 import { motion as Motion } from 'framer-motion';
-import {
-  FaMapMarkerAlt,
-  FaPhoneAlt,
-  FaClock,
-  FaCheckCircle,
-} from 'react-icons/fa';
+import { FaMapMarkerAlt, FaPhoneAlt, FaClock } from 'react-icons/fa';
+import GlowButton from '../Animated/GlowButton';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './Styles/ContactSection.module.less';
 
 export default function ContactSection() {
-  const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [skeleton, setSkeleton] = useState(true); // <- skeleton state
+  const [buttonState, setButtonState] = useState('idle');
+  const [formData, setFormData] = useState({
+    Fname: '',
+    Lname: '',
+    Email: '',
+    age: '',
+    message: '',
+  });
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setSkeleton(false); // show content after delay
-    }, 1500);
-    return () => clearTimeout(timeout);
-  }, []);
+  const handleValidate = async (data) => {
+    const schema = object({
+      Fname: string().required('First name is required').min(4),
+      Lname: string().required('Last name is required').min(4),
+      Email: string()
+        .required('Email is required')
+        .email('Invalid email format'),
+      age: number()
+        .required('Age is required')
+        .min(1, 'Too young')
+        .max(100, 'Too old')
+        .integer('Must be a whole number'),
+      message: string().required('Message is required').min(10),
+    });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
+    return await schema.validate(data, { abortEarly: false });
+  };
 
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-      toast.success('Message sent successfully!');
-    }, 2000);
+  const handleSubmit = async () => {
+    setButtonState('loading');
+    let toastId = null;
+
+    try {
+      await handleValidate(formData);
+      // TODO: send to backend here (axios/fetch)
+
+      toastId = toast.success('✅ Form sent successfully!', {
+        position: 'top-center',
+        autoClose: false,
+        theme: 'colored',
+        transition: Slide,
+      });
+
+      setFormData({
+        Fname: '',
+        Lname: '',
+        Email: '',
+        age: '',
+        message: '',
+      });
+
+      setButtonState('success');
+      setTimeout(() => {
+        toast.dismiss(toastId);
+        setButtonState('idle');
+      }, 3000);
+    } catch (err) {
+      if (err.errors) {
+        toastId = toast.error(err.errors.join('\n'), {
+          position: 'top-center',
+          autoClose: false,
+          theme: 'colored',
+          transition: Slide,
+        });
+        setButtonState('error');
+        setTimeout(() => {
+          toast.dismiss(toastId);
+          setButtonState('idle');
+        }, 4000);
+      } else {
+        setButtonState('idle');
+      }
+    }
   };
 
   return (
@@ -53,156 +93,153 @@ export default function ContactSection() {
 
       <Container fluid="lg">
         <Row>
+          {/* === Form Column === */}
           <Col md={7} className={styles.formColumn}>
-            {skeleton ? (
-              <Placeholder as="div" animation="glow">
-                <Placeholder xs={12} className="mb-3" />
-                <Placeholder xs={12} className="mb-3" />
-                <Placeholder xs={6} className="mb-3" />
-                <Placeholder xs={6} className="mb-3" />
-                <Placeholder xs={12} className="mb-3" />
-                <Placeholder xs={12} className="mb-3" />
-                <Placeholder.Button xs={12} variant="dark" />
-              </Placeholder>
-            ) : (
-              <Motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
+            <Motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <p className={styles.subtitle}>
+                <em>Have a Question? We're Here to Help</em>
+              </p>
+              <p className={styles.description}>
+                Email us at
+                <NavLink to="mailto:info@my-domain.com">
+                  info@my-domain.com
+                </NavLink>
+                or send us a message via the contact form below and we’ll get
+                back to you.
+              </p>
+
+              <Form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSubmit();
+                }}
               >
-                <p className={styles.subtitle}>
-                  <em>Have a Question? We’re Here to Help</em>
-                </p>
-                <p className={styles.description}>
-                  Email us at{' '}
-                  <NavLink to="mailto:info@my-domain.com">
-                    info@my-domain.com
-                  </NavLink>{' '}
-                  or send us a message via the contact form below and we’ll get
-                  back to you
-                </p>
+                <Row className="mb-3">
+                  <Col>
+                    <Form.Control
+                      type="text"
+                      placeholder="First name *"
+                      value={formData.Fname}
+                      onChange={(e) =>
+                        setFormData({ ...formData, Fname: e.target.value })
+                      }
+                      required
+                    />
+                  </Col>
+                  <Col>
+                    <Form.Control
+                      type="text"
+                      placeholder="Last name *"
+                      value={formData.Lname}
+                      onChange={(e) =>
+                        setFormData({ ...formData, Lname: e.target.value })
+                      }
+                      required
+                    />
+                  </Col>
+                </Row>
 
-                <Form onSubmit={handleSubmit}>
-                  <Row className="mb-3">
-                    <Col>
-                      <Form.Control
-                        type="text"
-                        placeholder="First name *"
-                        required
-                      />
-                    </Col>
-                    <Col>
-                      <Form.Control
-                        type="text"
-                        placeholder="Last name *"
-                        required
-                      />
-                    </Col>
-                  </Row>
+                <Form.Control
+                  type="email"
+                  placeholder="Email *"
+                  className="mb-3"
+                  value={formData.Email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, Email: e.target.value })
+                  }
+                  required
+                />
 
-                  <Form.Control
-                    type="email"
-                    placeholder="Email *"
-                    className="mb-3"
-                    required
+                <Form.Control
+                  type="number"
+                  placeholder="Age *"
+                  className="mb-3"
+                  value={formData.age}
+                  onChange={(e) =>
+                    setFormData({ ...formData, age: e.target.value })
+                  }
+                  required
+                />
+
+                <Form.Control
+                  as="textarea"
+                  placeholder="Your message *"
+                  rows={5}
+                  className="mb-3"
+                  value={formData.message}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
+                  required
+                />
+
+                <div className={styles.buttonWrapper}>
+                  <GlowButton
+                    buttonState={buttonState}
+                    onClick={handleSubmit}
+                    idleText="Send Message"
+                    loadingText="Sending..."
+                    successText="Sent!"
+                    errorText="Fix Errors"
+                    width="100%"
                   />
-
-                  <Form.Control
-                    as="textarea"
-                    rows={4}
-                    placeholder="Type your message here..."
-                    className="mb-3"
-                    required
-                  />
-
-                  <Button
-                    type="submit"
-                    variant="dark"
-                    className="w-100"
-                    disabled={loading || submitted}
-                  >
-                    {loading ? (
-                      <>
-                        <Spinner
-                          animation="border"
-                          size="sm"
-                          role="status"
-                          className="me-2"
-                        />
-                        Sending...
-                      </>
-                    ) : submitted ? (
-                      <>
-                        <FaCheckCircle className="me-2" /> Sent!
-                      </>
-                    ) : (
-                      'Submit'
-                    )}
-                  </Button>
-                </Form>
-              </Motion.div>
-            )}
+                </div>
+              </Form>
+            </Motion.div>
           </Col>
 
+          {/* === Info Column === */}
           <Col md={5} className={styles.infoColumn}>
-            {skeleton ? (
-              <Placeholder as="div" animation="glow">
-                <Placeholder xs={10} className="mb-3" />
-                <Placeholder xs={12} className="mb-2" />
-                <Placeholder xs={12} className="mb-2" />
-                <Placeholder xs={6} className="mb-2" />
-                <Placeholder xs={8} className="mb-2" />
-              </Placeholder>
-            ) : (
-              <>
-                <Motion.div
-                  initial={{ opacity: 0, x: 60 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6 }}
-                  viewport={{ once: true }}
-                  className={styles.block}
-                >
-                  <h5>
-                    <FaMapMarkerAlt /> Our Stores
-                  </h5>
-                  <p>
-                    500 Terry Francine Street
-                    <br />
-                    San Francisco, CA 94158
-                    <br />
-                    <NavLink href="tel:1234567890" className={styles.link}>
-                      <FaPhoneAlt /> Tel: 123-456-7890
-                    </NavLink>
-                  </p>
-                  <hr className={styles.divider} />
-                  <p>
-                    500 Terry Francine Street
-                    <br />
-                    San Francisco, CA 94158
-                    <br />
-                    <NavLink to="tel:1234567890" className={styles.link}>
-                      <FaPhoneAlt /> Tel: 123-456-7890
-                    </NavLink>
-                  </p>
-                </Motion.div>
+            <Motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className={styles.block}
+            >
+              <h5>
+                <FaMapMarkerAlt /> Our Stores
+              </h5>
+              <p>
+                500 Terry Francine Street
+                <br />
+                San Francisco, CA 94158
+                <br />
+                <NavLink to="tel:1234567890" className={styles.link}>
+                  <FaPhoneAlt /> Tel: 123-456-7890
+                </NavLink>
+              </p>
+              <hr className={styles.divider} />
+              <p>
+                500 Terry Francine Street
+                <br />
+                San Francisco, CA 94158
+                <br />
+                <NavLink to="tel:1234567890" className={styles.link}>
+                  <FaPhoneAlt /> Tel: 123-456-7890
+                </NavLink>
+              </p>
+            </Motion.div>
 
-                <Motion.div
-                  initial={{ opacity: 0, x: 60 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  viewport={{ once: true }}
-                  className={styles.block}
-                >
-                  <h5>
-                    <FaClock /> Opening Hours
-                  </h5>
-                  <p>Mon - Fri: 8am - 8pm</p>
-                  <p>Saturday: 9am - 9pm</p>
-                  <p>Sunday: 9am - 10pm</p>
-                </Motion.div>
-              </>
-            )}
+            <Motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className={styles.block}
+            >
+              <h5>
+                <FaClock /> Opening Hours
+              </h5>
+              <p>Mon - Fri: 8am - 8pm</p>
+              <p>Saturday: 9am - 9pm</p>
+              <p>Sunday: 9am - 10pm</p>
+            </Motion.div>
           </Col>
         </Row>
       </Container>
