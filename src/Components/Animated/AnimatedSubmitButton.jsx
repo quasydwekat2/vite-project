@@ -22,7 +22,8 @@ const AnimatedSubmitButton = () => {
       pathEl.setAttribute('stroke-dasharray', offset);
       pathEl.setAttribute('stroke-dashoffset', offset);
 
-      timelineRef.current = anime.timeline({ autoplay: false })
+      timelineRef.current = anime
+        .timeline({ autoplay: false })
         .add({
           targets: `.${styles.text}`,
           duration: 1,
@@ -84,11 +85,7 @@ const AnimatedSubmitButton = () => {
       </div>
       <div className={styles.progressBar}></div>
       <svg viewBox="0 0 25 30" className={styles.svg}>
-        <path
-          ref={pathRef}
-          className={styles.check}
-          d="M2,19.2C5.9,23.6,9.4,28,9.4,28L23,2"
-        />
+        <path ref={pathRef} className={styles.check} d="M2,19.2C5.9,23.6,9.4,28,9.4,28L23,2" />
       </svg>
     </div>
   );

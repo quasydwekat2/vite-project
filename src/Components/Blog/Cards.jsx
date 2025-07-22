@@ -12,8 +12,8 @@ export default function Cards() {
 
   const [expandedCards, setExpandedCards] = useState({});
 
-  const toggleReadMore = (idx) => {
-    setExpandedCards((prev) => ({ ...prev, [idx]: !prev[idx] }));
+  const toggleReadMore = idx => {
+    setExpandedCards(prev => ({ ...prev, [idx]: !prev[idx] }));
   };
 
   const cardData = [
@@ -24,7 +24,7 @@ export default function Cards() {
       desc: "We've made it quick and convenient for you to manage your blog from anywhere. In this blog post, we’ll share the ways you can post to your blog from your phone, tablet, or desktop in seconds — even while sipping coffee at your favorite café.",
       views: 0,
       comments: 0,
-      likes: 1
+      likes: 1,
     },
     {
       img: '../../../img/person.jpg',
@@ -33,7 +33,7 @@ export default function Cards() {
       desc: "You're not only sharing your voice with the world, you can also grow an active online community. To let readers sign up for updates, consider adding a subscription form or engaging comment section.",
       views: 0,
       comments: 0,
-      likes: 2
+      likes: 2,
     },
     {
       img: '../../../img/person.jpg',
@@ -42,12 +42,12 @@ export default function Cards() {
       desc: 'When it comes to design, our tools help you create beautiful blog posts that grab attention. Customize colors, fonts, layouts, and more — no coding required.',
       views: 0,
       comments: 0,
-      likes: 0
-    }
+      likes: 0,
+    },
   ];
 
   return (
-    <Container  fluid id="blog-cards" className={`pt-5 ${styles.cardSection}`}>
+    <Container fluid id="blog-cards" className={`pt-5 ${styles.cardSection}`}>
       <Row xs={1} sm={2} md={2} lg={3} xl={3}>
         {cardData.map((card, idx) => {
           const isExpanded = expandedCards[idx];
@@ -71,15 +71,12 @@ export default function Cards() {
                 <Card.Body className="d-flex flex-column">
                   <Card.Subtitle
                     className={`mb-2 text-muted ${styles.cardMeta}`}
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={e => e.stopPropagation()}
                   >
                     <span className={styles.author}>Admin</span> — {card.date}
                   </Card.Subtitle>
 
-                  <Card.Title
-                    className={styles.cardTitle}
-                    onClick={(e) => e.stopPropagation()}
-                  >
+                  <Card.Title className={styles.cardTitle} onClick={e => e.stopPropagation()}>
                     <em>{card.title}</em>
                   </Card.Title>
 
@@ -95,14 +92,14 @@ export default function Cards() {
                             }
                           : {}
                       }
-                      onClick={(e) => e.stopPropagation()}
+                      onClick={e => e.stopPropagation()}
                     >
                       {card.desc}
                     </Card.Text>
                     {!isExpanded && <div className={styles.fadeOverlay} />}
                     <button
                       className={styles.readMoreBtn}
-                      onClick={(e) => {
+                      onClick={e => {
                         e.stopPropagation();
                         toggleReadMore(idx);
                       }}
@@ -113,7 +110,7 @@ export default function Cards() {
 
                   <div
                     className={`d-flex justify-content-between mt-auto pt-3 ${styles.cardStats}`}
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={e => e.stopPropagation()}
                   >
                     <span>
                       <FaRegEye /> {card.views} views

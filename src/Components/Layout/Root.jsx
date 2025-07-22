@@ -10,7 +10,7 @@ const Root = () => {
       <Header />
       <Outlet />
       <Footer />
-      <AnimatedButton/>
+      <AnimatedButton />
     </>
   );
 };

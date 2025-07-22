@@ -12,11 +12,7 @@ export default function Root() {
         scrollTarget="#ContactSection"
       />
 
-      <div
-        className={Styles.sectionDivider}
-        data-aos="fade-in"
-        data-aos-delay="200"
-      />
+      <div className={Styles.sectionDivider} data-aos="fade-in" data-aos-delay="200" />
 
       <ContactSection />
     </>

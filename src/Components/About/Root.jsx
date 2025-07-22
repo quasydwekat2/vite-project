@@ -14,25 +14,13 @@ const Root = () => {
         mobileImage={greenImage}
         scrollTarget="#about-section"
       />
-      <div
-        className={Styles.sectionDivider}
-        data-aos="fade-in"
-        data-aos-delay="200"
-      />
+      <div className={Styles.sectionDivider} data-aos="fade-in" data-aos-delay="200" />
 
       <AboutSection />
-      <div
-        className={Styles.sectionDivider}
-        data-aos="fade-in"
-        data-aos-delay="200"
-      />
+      <div className={Styles.sectionDivider} data-aos="fade-in" data-aos-delay="200" />
 
       <AboutTea />
-      <div
-        className={Styles.sectionDivider}
-        data-aos="fade-in"
-        data-aos-delay="200"
-      />
+      <div className={Styles.sectionDivider} data-aos="fade-in" data-aos-delay="200" />
     </>
   );
 };

@@ -19,7 +19,7 @@ export default function useThemeMode(defaultMode) {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
   }, [darkMode]);
 
-  const toggleTheme = () => setDarkMode((prev) => !prev);
+  const toggleTheme = () => setDarkMode(prev => !prev);
 
   return { darkMode, toggleTheme };
 }

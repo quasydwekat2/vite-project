@@ -13,7 +13,7 @@ export default function useTiltEffect(ref, isMobile) {
     damping: 20,
   });
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = e => {
     if (!ref.current || isMobile) return;
     const { left, top, width, height } = ref.current.getBoundingClientRect();
     x.set((e.clientX - left) / width);

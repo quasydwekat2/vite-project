@@ -36,21 +36,9 @@ export default function AnimatedButton({
 
   return (
     <div className={`${styles.btnWrapper} ${className}`}>
-      <button
-        className={styles.btn}
-        onClick={handleClick}
-        aria-label="Animated scroll button"
-      >
+      <button className={styles.btn} onClick={handleClick} aria-label="Animated scroll button">
         <svg viewBox="0 0 180 60" preserveAspectRatio="none">
-          <rect
-            x="1"
-            y="1"
-            width="178"
-            height="58"
-            rx="12"
-            ry="12"
-            className={styles.strokeRect}
-          />
+          <rect x="1" y="1" width="178" height="58" rx="12" ry="12" className={styles.strokeRect} />
         </svg>
         <span>{isAtTop ? topLabel : bottomLabel}</span>
       </button>

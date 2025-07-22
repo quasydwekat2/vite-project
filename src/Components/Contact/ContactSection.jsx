@@ -18,13 +18,11 @@ export default function ContactSection() {
     message: '',
   });
 
-  const handleValidate = async (data) => {
+  const handleValidate = async data => {
     const schema = object({
       Fname: string().required('First name is required').min(4),
       Lname: string().required('Last name is required').min(4),
-      Email: string()
-        .required('Email is required')
-        .email('Invalid email format'),
+      Email: string().required('Email is required').email('Invalid email format'),
       age: number()
         .required('Age is required')
         .min(1, 'Too young')
@@ -42,7 +40,6 @@ export default function ContactSection() {
 
     try {
       await handleValidate(formData);
-      // TODO: send to backend here (axios/fetch)
 
       toastId = toast.success('✅ Form sent successfully!', {
         position: 'top-center',
@@ -106,15 +103,12 @@ export default function ContactSection() {
               </p>
               <p className={styles.description}>
                 Email us at
-                <NavLink to="mailto:info@my-domain.com">
-                  info@my-domain.com
-                </NavLink>
-                or send us a message via the contact form below and we’ll get
-                back to you.
+                <NavLink to="mailto:info@my-domain.com">info@my-domain.com</NavLink>
+                or send us a message via the contact form below and we’ll get back to you.
               </p>
 
               <Form
-                onSubmit={(e) => {
+                onSubmit={e => {
                   e.preventDefault();
                   handleSubmit();
                 }}
@@ -125,9 +119,7 @@ export default function ContactSection() {
                       type="text"
                       placeholder="First name *"
                       value={formData.Fname}
-                      onChange={(e) =>
-                        setFormData({ ...formData, Fname: e.target.value })
-                      }
+                      onChange={e => setFormData({ ...formData, Fname: e.target.value })}
                       required
                     />
                   </Col>
@@ -136,9 +128,7 @@ export default function ContactSection() {
                       type="text"
                       placeholder="Last name *"
                       value={formData.Lname}
-                      onChange={(e) =>
-                        setFormData({ ...formData, Lname: e.target.value })
-                      }
+                      onChange={e => setFormData({ ...formData, Lname: e.target.value })}
                       required
                     />
                   </Col>
@@ -149,9 +139,7 @@ export default function ContactSection() {
                   placeholder="Email *"
                   className="mb-3"
                   value={formData.Email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, Email: e.target.value })
-                  }
+                  onChange={e => setFormData({ ...formData, Email: e.target.value })}
                   required
                 />
 
@@ -160,9 +148,7 @@ export default function ContactSection() {
                   placeholder="Age *"
                   className="mb-3"
                   value={formData.age}
-                  onChange={(e) =>
-                    setFormData({ ...formData, age: e.target.value })
-                  }
+                  onChange={e => setFormData({ ...formData, age: e.target.value })}
                   required
                 />
 
@@ -172,9 +158,7 @@ export default function ContactSection() {
                   rows={5}
                   className="mb-3"
                   value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
+                  onChange={e => setFormData({ ...formData, message: e.target.value })}
                   required
                 />
 

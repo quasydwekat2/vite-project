@@ -4,7 +4,10 @@ import Home from './Pages/Home';
 import About from './Pages/About';
 import Blog from './Pages/Blog';
 import Contact from './Pages/Contact';
-import NotFound from './Pages/NotFound';
+import LoginPage from './Pages/LoginPage.jsx';
+import RegisterPage from './Pages/RegisterPage';
+import NotFound from "./Pages/NotFound.jsx"
+
 import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,6 +23,9 @@ const router = createBrowserRouter([
       { path: 'about', element: <About /> },
       { path: 'blog', element: <Blog /> },
       { path: 'contact', element: <Contact /> },
+      { path: 'Login', element: <LoginPage /> },
+      { path: 'Register', element: <RegisterPage /> },
+
       { path: '*', element: <NotFound /> },
     ],
   },

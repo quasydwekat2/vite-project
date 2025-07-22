@@ -54,7 +54,7 @@ export default function GlowButton({
           </>
         }
         type="button"
-        className={`${styles.glowButton} ${customClass}`} 
+        className={`${styles.glowButton} ${customClass}`}
         outline={true}
         shadow={true}
         rounded={true}
@@ -63,7 +63,7 @@ export default function GlowButton({
         messageDuration={messageDuration}
         disabled={disabled}
         animation={true}
-        style={{ width }} 
+        style={{ width }}
       />
     </div>
   );

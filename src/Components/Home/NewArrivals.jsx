@@ -1,15 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Button,
-  Modal,
-  Form,
-} from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Modal, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './Styles/NewArrivals.module.less';
@@ -41,7 +33,7 @@ const NewArrivals = () => {
     fetchData();
   }, []);
 
-  const handleShow = (product) => {
+  const handleShow = product => {
     setSelectedProduct(product);
     setShowModal(true);
   };
@@ -67,13 +59,13 @@ const NewArrivals = () => {
             <span className={styles.line}></span>
           </h2>
           <p>
-            I'm a paragraph. Click here to add your own text and edit me. Let
-            your users get to know you.
+            I'm a paragraph. Click here to add your own text and edit me. Let your users get to know
+            you.
           </p>
         </section>
 
         <Row className="g-4" xs={6} sm={4} md={3} lg={3} xl={3}>
-          {products.map((item) => (
+          {products.map(item => (
             <Col key={item.id} xs={12} sm={6} md={4} lg={2}>
               <Card
                 data-aos="fade-up"
@@ -95,12 +87,8 @@ const NewArrivals = () => {
                   <div className={styles['quick-view-overlay']}>Quick View</div>
                 </div>
                 <Card.Body className="text-center">
-                  <Card.Title className="h6 fst-italic fw-semibold mb-1">
-                    {item.title}
-                  </Card.Title>
-                  <Card.Text className="text-muted small mb-0">
-                    {item.price}₪
-                  </Card.Text>
+                  <Card.Title className="h6 fst-italic fw-semibold mb-1">{item.title}</Card.Title>
+                  <Card.Text className="text-muted small mb-0">{item.price}₪</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
@@ -127,7 +115,7 @@ const NewArrivals = () => {
                     <Form.Label>Size</Form.Label>
                     <Form.Select
                       value={selectedSize}
-                      onChange={(e) => setSelectedSize(e.target.value)}
+                      onChange={e => setSelectedSize(e.target.value)}
                     >
                       <option value="125G">125G</option>
                       <option value="250G">250G</option>
@@ -140,7 +128,7 @@ const NewArrivals = () => {
                     <Button
                       variant="outline-secondary"
                       size="sm"
-                      onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                      onClick={() => setQuantity(q => Math.max(1, q - 1))}
                     >
                       -
                     </Button>
@@ -148,7 +136,7 @@ const NewArrivals = () => {
                     <Button
                       variant="outline-secondary"
                       size="sm"
-                      onClick={() => setQuantity((q) => q + 1)}
+                      onClick={() => setQuantity(q => q + 1)}
                     >
                       +
                     </Button>

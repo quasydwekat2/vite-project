@@ -1,11 +1,11 @@
-import React from 'react'
-import Root from "../Components/About/Root"
+import React from 'react';
+import Root from '../Components/About/Root';
 const About = () => {
   return (
     <>
-    <Root/>
+      <Root />
     </>
-  )
-}
+  );
+};
 
-export default About
+export default About;

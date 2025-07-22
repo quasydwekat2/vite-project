@@ -45,13 +45,13 @@ export default function AboutTea() {
     const currentTexts = rotatingContent[imageIndex].texts;
     if (visibleTextCount < currentTexts.length) {
       const timer = setTimeout(() => {
-        setVisibleTextCount((prev) => prev + 1);
+        setVisibleTextCount(prev => prev + 1);
       }, 2000);
       return () => clearTimeout(timer);
     } else {
       // Wait 2s after final text before changing image
       const delay = setTimeout(() => {
-        setImageIndex((prev) => (prev + 1) % rotatingContent.length);
+        setImageIndex(prev => (prev + 1) % rotatingContent.length);
         setVisibleTextCount(0);
       }, 2000);
       return () => clearTimeout(delay);

@@ -1,9 +1,7 @@
-import React from 'react'
-
+import React from 'react';
+import Register from '../Components/Auth/Register';
 const Teas = () => {
-  return (
-    <div>Teas</div>
-  )
-}
+  return <><Register/></>;
+};
 
-export default Teas
+export default Teas;

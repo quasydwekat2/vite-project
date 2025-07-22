@@ -1,10 +1,5 @@
 import React, { useRef, useLayoutEffect } from 'react';
-import {
-  motion as Motion,
-  useScroll,
-  useTransform,
-  useInView,
-} from 'framer-motion';
+import { motion as Motion, useScroll, useTransform, useInView } from 'framer-motion';
 import useTiltEffect from '../Components/hooks/useTiltEffect';
 import styles from './Styles/HeroSection.module.less';
 
@@ -27,10 +22,7 @@ export default function HeroSection({
 
   const { scrollY } = useScroll();
   const rotateXScroll = useTransform(scrollY, [0, 300], [0, 25]);
-  const { rotateX, rotateY, handleMouseMove } = useTiltEffect(
-    sectionRef,
-    isMobile
-  );
+  const { rotateX, rotateY, handleMouseMove } = useTiltEffect(sectionRef, isMobile);
 
   const handleScroll = () => {
     const target = document.querySelector(scrollTarget);
@@ -45,13 +37,7 @@ export default function HeroSection({
       onMouseMove={handleMouseMove}
     >
       <picture>
-        {mobileImage && (
-          <source
-            media="(max-width: 768px)"
-            srcSet={mobileImage}
-            loading="lazy"
-          />
-        )}
+        {mobileImage && <source media="(max-width: 768px)" srcSet={mobileImage} loading="lazy" />}
         <Motion.img
           loading="lazy"
           aria-hidden="true"
@@ -70,9 +56,7 @@ export default function HeroSection({
         />
       </picture>
 
-      <Motion.div
-        className={`position-absolute top-0 start-0 w-100 h-100 ${styles.overlay}`}
-      >
+      <Motion.div className={`position-absolute top-0 start-0 w-100 h-100 ${styles.overlay}`}>
         <Motion.div
           ref={titleRef}
           className={styles.titleBox}

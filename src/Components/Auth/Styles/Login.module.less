@@ -1,0 +1,213 @@
+
+:root {
+  --bg-color: linear-gradient(135deg, #f4f7fc, #dde7f7);
+  --text-color: #111;
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --svg-wave-color: #dce6f1;
+}
+
+[data-theme='dark'] {
+  --bg-color: linear-gradient(135deg, #0d1117, #1a1f2b);
+  --text-color: #fff;
+  --card-bg: rgba(24, 24, 28, 0.98);
+  --svg-wave-color: #1b2735;
+}
+
+.signInWrapper {
+  position: relative;
+  min-height: 100vh;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+// 🌄 Animated Background Image
+.bgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.2;
+  z-index: 0;
+  pointer-events: none;
+  filter: brightness(0.85) contrast(1.05);
+  transition: all 0.5s ease;
+
+  [data-theme='dark'] & {
+    filter: brightness(0.5) contrast(1.2) saturate(1.1);
+  }
+}
+
+// 🌊 Animated SVG Wave
+.animatedBackground {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 280px;
+    fill: var(--svg-wave-color);
+  }
+}
+
+.loginContainer {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.loginRow {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardMotion {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.signInCard {
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease;
+
+  [data-theme='dark'] & {
+    background-color: rgba(24, 24, 28, 0.65);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.45);
+  }
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+
+.socialButtons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  button {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border-radius: 0.6rem;
+    border: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .google {
+    background-color: #34a853;
+    color: #fff;
+    &:hover {
+      background-color: #2c8d46;
+    }
+  }
+
+  .facebook {
+    background-color: #3b5998;
+    color: #fff;
+    &:hover {
+      background-color: #2d4373;
+    }
+  }
+}
+
+.optionsRow {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+
+  input[type='checkbox'] {
+    transform: scale(1.1);
+    accent-color: var(--text-color);
+  }
+}
+
+.link {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.registerText {
+  font-size: 0.95rem;
+  color: var(--text-color);
+  opacity: 0.95;
+}
+
+input.form-control {
+  background-color: #f0f4ff;
+  color: #111;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+[data-theme='dark'] input.form-control {
+  background-color: #1f2937;
+  color: #fff;
+  border: 1px solid #444;
+
+  &::placeholder {
+    color: #ccc;
+  }
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #530909;
+  font-size: 1.1rem;
+  z-index: 2;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #000;
+  }
+
+  [data-theme='dark'] & {
+    color: #bbb;
+    &:hover {
+      color: #fff;
+    }
+  }
+}

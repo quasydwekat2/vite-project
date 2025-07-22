@@ -1,5 +1,5 @@
 import React from 'react';
-import Root from "../Components/Blog/Root"
+import Root from '../Components/Blog/Root';
 
 const Blog = () => {
   return (

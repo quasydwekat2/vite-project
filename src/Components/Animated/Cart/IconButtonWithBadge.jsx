@@ -12,12 +12,7 @@ const CartBadge = styled(Badge)(() => ({
   },
 }));
 
-export default function IconButtonWithBadge({
-  count = 0,
-  onClick,
-  size = 'small',
-  darkMode,
-}) {
+export default function IconButtonWithBadge({ count = 0, onClick, size = 'small', darkMode }) {
   const iconColor = darkMode ? '#ffffff' : '#1c1e24'; // White in dark mode, black in light
 
   return (
