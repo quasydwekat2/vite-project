@@ -5,7 +5,7 @@ import { Row, Col, Form } from 'react-bootstrap';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { motion as Motion } from 'framer-motion';
-import bgImage from '@/img/Green.avif';
+import Green from '@/img/Green.webp';
 import GlowButton from '../Animated/GlowButton';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './Styles/Register.module.less';
@@ -90,8 +90,8 @@ export default function Register() {
   return (
     <div className={styles.signInWrapper}>
       <Motion.div
-        className={styles.bgImage}
-        style={{ backgroundImage: `url(${bgImage})` }}
+        className={styles.Green}
+        style={{ backgroundImage: `url(${Green})` }}
         initial={{ scale: 1.1, opacity: 0.4 }}
         animate={{ scale: 1, opacity: 0.8 }}
         transition={{ duration: 8, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}

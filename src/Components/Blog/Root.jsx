@@ -3,15 +3,15 @@ import Cards from './Cards';
 import HeroSection from '@/Global/HeroSection';
 // import CategoryFilter from './CategoryFilter';
 import Styles from '@/Global/Styles/sectionDivider.module.less';
-import AboutImage from '@/img/AboutHero.jpg';
+import AboutHero from '@/img/Blog.webp';
 
 const Root = () => {
   return (
     <>
       <HeroSection
         title="Bloom's Blog"
-        image={AboutImage}
-        mobileImage={AboutImage}
+        image={AboutHero}
+        mobileImage={AboutHero}
         scrollTarget="#blog-cards"
       />
       <div className={Styles.sectionDivider} data-aos="fade-in" data-aos-delay="200" />

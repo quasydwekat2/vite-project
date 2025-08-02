@@ -3,15 +3,15 @@ import AboutSection from './AboutSection';
 import AboutTea from './AboutTea';
 import Styles from '@/Global/Styles/sectionDivider.module.less';
 import HeroSection from '@/Global/HeroSection';
-import greenImage from '@/img/Green.avif';
+import Green from '@/img/Green.webp';
 
 const Root = () => {
   return (
     <>
       <HeroSection
         title=" Our Story"
-        image={greenImage}
-        mobileImage={greenImage}
+        image={Green}
+        mobileImage={Green}
         scrollTarget="#about-section"
       />
       <div className={Styles.sectionDivider} data-aos="fade-in" data-aos-delay="200" />

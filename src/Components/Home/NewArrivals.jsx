@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { Container, Row, Col, Card, Button, Modal, Form } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
-import styles from './Styles/NewArrivals.module.less';
+import Styles from './Styles/NewArrivals.module.less';
+import ProductDetails from './ProductDetails';
 
 const apiUrl = `${import.meta.env.VITE_API_BASE}/products`;
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
@@ -18,13 +23,10 @@ const NewArrivals = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    AOS.init({ duration: 800, once: true });
-
     const fetchData = async () => {
       try {
         const { data } = await axios.get(apiUrl);
-        const latest6 = [...data.products].slice(-6);
-        setProducts(latest6);
+        setProducts(data.products.slice(-6));
       } catch (err) {
         console.error('Error fetching products:', err);
       }
@@ -50,113 +52,83 @@ const NewArrivals = () => {
   };
 
   return (
-    <section className="py-5 text-center bg-light">
+    <section className={`py-5 text-center bg-light`}>
       <Container fluid>
-        <section className={styles['new-arrivals']} data-aos="fade-up">
-          <h2 data-aos="fade-up">
-            <span className={styles.line}></span>
-            New Arrivals
-            <span className={styles.line}></span>
-          </h2>
+        <Motion.div
+          className={Styles['new-arrivals']}
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <h2>New Arrivals</h2>
           <p>
             I'm a paragraph. Click here to add your own text and edit me. Let your users get to know
             you.
           </p>
-        </section>
+        </Motion.div>
 
-        <Row className="g-4" xs={6} sm={4} md={3} lg={3} xl={3}>
+        <Row className="g-4 justify-content-center">
           {products.map(item => (
             <Col key={item.id} xs={12} sm={6} md={4} lg={2}>
-              <Card
-                data-aos="fade-up"
-                className={`${styles.card} h-100 border-0 shadow-sm`}
-                onClick={() => handleShow(item)}
+              <Motion.div
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
               >
-                <div className={styles.cardImageWrapper}>
-                  <Card.Img
-                    variant="top"
-                    src={item.thumbnail}
-                    alt={item.title}
-                    className={styles.cardImage}
-                  />
-                  <img
-                    src={item.images?.[2] || item.thumbnail}
-                    alt={`${item.title} hover`}
-                    className={styles['hover-img']}
-                  />
-                  <div className={styles['quick-view-overlay']}>Quick View</div>
-                </div>
-                <Card.Body className="text-center">
-                  <Card.Title className="h6 fst-italic fw-semibold mb-1">{item.title}</Card.Title>
-                  <Card.Text className="text-muted small mb-0">{item.price}₪</Card.Text>
-                </Card.Body>
-              </Card>
+                <Card
+                  className={`${Styles.card} h-100`}
+                  onClick={() => handleShow(item)}
+                >
+                  <div className={Styles.cardImageWrapper}>
+                    <Card.Img
+                      variant="top"
+                      src={item.thumbnail}
+                      alt={item.title}
+                      className={Styles.cardImage}
+                    />
+                    <img
+                      src={item.images?.[2] || item.thumbnail}
+                      alt={`${item.title} hover`}
+                      className={Styles['hover-img']}
+                    />
+                    <div className={Styles['quick-view-overlay']}>Quick View</div>
+                  </div>
+                  <Card.Body className="text-center">
+                    <Card.Title>{item.title}</Card.Title>
+                    <Card.Text>{item.price}₪</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Motion.div>
             </Col>
           ))}
         </Row>
 
-        {selectedProduct && (
-          <Modal show={showModal} onHide={handleClose} centered size="lg">
-            <Modal.Body className="p-4">
-              <div className="row align-items-center">
-                <div className="col-md-6 text-center d-flex justify-content-center">
-                  <img
-                    src={selectedProduct.thumbnail}
-                    alt={selectedProduct.title}
-                    className={styles.modalImage}
-                  />
-                </div>
-
-                <div className="col-md-6 mt-4 mt-md-0">
-                  <h5 className="fst-italic">{selectedProduct.title}</h5>
-                  <p className="text-muted">{selectedProduct.price}₪</p>
-
-                  <Form.Group className="mb-3">
-                    <Form.Label>Size</Form.Label>
-                    <Form.Select
-                      value={selectedSize}
-                      onChange={e => setSelectedSize(e.target.value)}
-                    >
-                      <option value="125G">125G</option>
-                      <option value="250G">250G</option>
-                      <option value="500G">500G</option>
-                    </Form.Select>
-                  </Form.Group>
-
-                  <div className="mb-3 d-flex align-items-center gap-2">
-                    <span className="me-2">Qty:</span>
-                    <Button
-                      variant="outline-secondary"
-                      size="sm"
-                      onClick={() => setQuantity(q => Math.max(1, q - 1))}
-                    >
-                      -
-                    </Button>
-                    <span>{quantity}</span>
-                    <Button
-                      variant="outline-secondary"
-                      size="sm"
-                      onClick={() => setQuantity(q => q + 1)}
-                    >
-                      +
-                    </Button>
-                  </div>
-
-                  <Button variant="dark" className="w-100">
-                    ADD TO CART
-                  </Button>
-                </div>
-              </div>
-            </Modal.Body>
-          </Modal>
-        )}
-
-        <div data-aos="fade-up" data-aos-delay="300">
-          <button className={styles.shopAllBtn} onClick={handleNavigate}>
-            <span>Shop All</span>
-            <span className={styles.arrow}>&rarr;</span>
+        <Motion.div
+          className="mt-4"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <button className={Styles.shopAllBtn} onClick={handleNavigate}>
+            Shop All &rarr;
           </button>
-        </div>
+        </Motion.div>
+
+        <AnimatePresence>
+          {showModal && selectedProduct && (
+            <ProductDetails
+              product={selectedProduct}
+              onClose={handleClose}
+              quantity={quantity}
+              setQuantity={setQuantity}
+              selectedSize={selectedSize}
+              setSelectedSize={setSelectedSize}
+            />
+          )}
+        </AnimatePresence>
       </Container>
     </section>
   );
